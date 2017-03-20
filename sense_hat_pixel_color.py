@@ -12,14 +12,14 @@ gb = [0,255,255]
 rg = [255,255,0]
 
 image = [
-r,r,w,p,p,w,r,r,
-r,r,w,p,p,w,r,r,
+g,g,w,w,w,w,g,g,
+g,g,w,w,w,w,g,g,
 w,w,w,w,w,w,w,w,
-g,g,w,gb,gb,w,g,g,
-g,g,w,gb,gb,w,g,g,
+r,r,w,r,r,w,r,r,
+r,r,w,r,r,w,r,r,
 w,w,w,w,w,w,w,w,
-b,b,w,rg,rg,w,b,b,
-b,b,w,rg,rg,w,b,b
+r,r,w,r,r,w,r,r,
+r,r,w,r,r,w,r,r
 ]
 
 sense.set_pixels(image)
