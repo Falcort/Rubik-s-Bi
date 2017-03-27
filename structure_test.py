@@ -34,13 +34,13 @@ class RPFace :
                 self.cells.append(RPCell(color,i,j))
         
     def setSide(self,side,face):
-        if side=top :
+        if side==top :
             self.top=face
-        elif side=right :
+        elif side==right :
             self.right=face
-        elif side=bot :
+        elif side==bot :
             self.bot=face
-        elif side=left :
+        elif side==left :
             self.left=face
 
     def display(self):
