@@ -23,10 +23,10 @@ class RPCell :
                 sense.set_pixel(x*3+i, y*3+j, self.color)
 
 class RPFace :
-    def __init__(self,color,top=None,right=None,bottom=None,left=None):
+    def __init__(self,color,top=None,right=None,bot=None,left=None):
         self.top=top
         self.right=right
-        self.bot=bottom
+        self.bot=bot
         self.left=left
         self.cells=[]
         for i in range(3):
