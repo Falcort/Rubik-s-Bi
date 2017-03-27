@@ -56,7 +56,7 @@ class RPCube :
         self.face4=RPFace(y,top=self.face1,left=self.face3)
         self.face5=RPFace(c,top=self.face1,left=self.face4,right=self.face2)
         self.face6=RPFace(m,top=self.face2,right=self.face3,bot=self.face4,left=self.face5)
-        self.face1.setSide("top"self.face4)
+        self.face1.setSide("top",self.face4)
         self.face1.setSide("right",self.face3)
         self.face1.setSide("bot",self.face2)
         self.face1.setSide("left",self.face5)
