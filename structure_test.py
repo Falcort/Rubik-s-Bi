@@ -18,8 +18,8 @@ class RPCell :
         self.color=color
 
     def display(self):
-        for i in range 2:
-            for j in range 2:
+        for i in range (2):
+            for j in range (2):
                 sense.set_pixel(x*3+i, y*3+j, self.color)
 
 class RPFace :
@@ -29,8 +29,8 @@ class RPFace :
         self.bot=bottom
         self.left=left
         self.cells=[]
-        for i in range 3:
-            for j in range 3
+        for i in range(3):
+            for j in range(3):
                 self.cells.append(RPCell(color,i,j))
         
     def setSide(self,side,face):
