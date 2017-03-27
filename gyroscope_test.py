@@ -3,12 +3,6 @@ from time import sleep
 
 sense = SenseHat()
 
-sense.show_letter("J", text_colour=[0,255,0])
-
-r = [255,0,0]
-g = [0,255,0]
-b = [0,0,255]
-
 
 while True :
     acceleration = sense.get_accelerometer_raw()
@@ -20,7 +14,14 @@ while True :
     y = round(y,0)
     z = round(z,0)
 
+    p = [255,69,0]
+    r = [255,0,0]
+    g = [0,255,0]
+    b = [0,0,255]
+    f = [255,255,0]
+    
     if (x == -1) :
+                
         image = [
         r,r,r,r,r,r,r,r,
         r,r,r,r,r,r,r,r,
@@ -45,11 +46,59 @@ while True :
         b,b,b,b,b,b,b,b,
         ]
         sense.set_pixels(image)
+
+    elif (y == -1) :
+        image = [
+        f,f,f,f,f,f,f,f,
+        f,f,f,f,f,f,f,f,
+        f,f,f,f,f,f,f,f,
+        f,f,f,f,f,f,f,f,
+        f,f,f,f,f,f,f,f,
+        f,f,f,f,f,f,f,f,
+        f,f,f,f,f,f,f,f,
+        f,f,f,f,f,f,f,f,
+        ]
+        sense.set_pixels(image)
+
+
+    elif (x == 1) :
+        image = [
+        p,p,p,p,p,p,p,p,
+        p,p,p,p,p,p,p,p,
+        p,p,p,p,p,p,p,p,
+        p,p,p,p,p,p,p,p,
+        p,p,p,p,p,p,p,p,
+        p,p,p,p,p,p,p,p,
+        p,p,p,p,p,p,p,p,
+        p,p,p,p,p,p,p,p,
+        ]
+        sense.set_pixels(image)
         
-    elif (y == -1):
-        sense.set_rotation(270)
+    elif (x == 0) :
+        image = [
+        g,g,g,g,g,g,g,g,
+        g,g,g,g,g,g,g,g,
+        g,g,g,g,g,g,g,g,
+        g,g,g,g,g,g,g,g,
+        g,g,g,g,g,g,g,g,
+        g,g,g,g,g,g,g,g,
+        g,g,g,g,g,g,g,g,
+        g,g,g,g,g,g,g,g,
+        ]
+        sense.set_pixels(image)
+
     else :
-        sense.set_rotation(0)
+        image = [
+        b,b,b,b,b,b,b,b,
+        b,b,b,b,b,b,b,b,
+        b,b,b,b,b,b,b,b,
+        b,b,b,b,b,b,b,b,
+        b,b,b,b,b,b,b,b,
+        b,b,b,b,b,b,b,b,
+        b,b,b,b,b,b,b,b,
+        b,b,b,b,b,b,b,b,
+        ]
+        sense.set_pixels(image)
 
 
 

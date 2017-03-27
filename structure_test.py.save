@@ -51,8 +51,9 @@ class RPFace :
 
 
 class RPCube :
-    def __init__(self):
-        self.face1=RPFace(r)
+	
+	def __init__(self):
+        	self.face1=RPFace(r)
         self.face2=RPFace(b,top=self.face1)
         self.face3=RPFace(g,top=self.face1,left=self.face2)
         self.face4=RPFace(y,top=self.face1,left=self.face3)
@@ -70,34 +71,15 @@ class RPCube :
         self.face4.setSide("bot",self.face6)
         self.face4.setSide("right",self.face5)
         self.face5.setSide("bot",self.face6)
-	self.currentFace=self.face2
 
     def display(self):
         self.currentFace.display()
-    
-    def rotate(self,side):
-	if side=="top":
-	    self.currentFace=self.currentFace.top
-	elif side=="right":
-	    self.currentFace=self.currentFace.right
-	elif side=="bot":
-	    self.currentFace=self.currentFace.bot
-	elif side =="left":
-	    self.currentFace=self.currentFace.left
-
-
 
 
 
 
 cube=RPCube()
 
-cube.display()
-sleep(5)
-cube.rotate("left")
-cube.display()
-sleep(5)
-cube.rotate("right")
 cube.display()
 
 
