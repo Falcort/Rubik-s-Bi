@@ -34,13 +34,13 @@ class RPFace :
                 self.cells.append(RPCell(color,i,j))
         
     def setSide(self,side,face):
-        if side==top :
+        if side=="top" :
             self.top=face
-        elif side==right :
+        elif side=="right" :
             self.right=face
-        elif side==bot :
+        elif side=="bot" :
             self.bot=face
-        elif side==left :
+        elif side=="left" :
             self.left=face
 
     def display(self):
@@ -56,18 +56,18 @@ class RPCube :
         self.face4=RPFace(y,top=self.face1,left=self.face3)
         self.face5=RPFace(c,top=self.face1,left=self.face4,right=self.face2)
         self.face6=RPFace(m,top=self.face2,right=self.face3,bot=self.face4,left=self.face5)
-        self.face1.setSide(top=self.face4)
-        self.face1.setSide(right=self.face3)
-        self.face1.setSide(bot=self.face2)
-        self.face1.setSide(left=self.face5)
-        self.face2.setSide(right=self.face3)
-        self.face2.setSide(bot=self.face6)
-        self.face2.setSide(left=self.face5)
-        self.face3.setSide(right=self.face4)
-        self.face3.setSide(bot=self.face6)
-        self.face4.setSide(bot=self.face6)
-        self.face4.setSide(right=self.face5)
-        self.face5.setSide(bot=self.face6)
+        self.face1.setSide("top"self.face4)
+        self.face1.setSide("right",self.face3)
+        self.face1.setSide("bot",self.face2)
+        self.face1.setSide("left",self.face5)
+        self.face2.setSide("right",self.face3)
+        self.face2.setSide("bot",self.face6)
+        self.face2.setSide("left",self.face5)
+        self.face3.setSide("right",self.face4)
+        self.face3.setSide("bot",self.face6)
+        self.face4.setSide("bot",self.face6)
+        self.face4.setSide("right",self.face5)
+        self.face5.setSide("bot",self.face6)
 
     def display(self):
         self.face1.display();
