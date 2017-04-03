@@ -2,6 +2,7 @@ from sense_hat import SenseHat
 from time import sleep
 from collections import namedtuple
 
+
 sense = SenseHat()
 sense.clear()
 
@@ -12,19 +13,21 @@ w = [0,0,0]
 m = [255,0,255]
 c = [0,255,255]
 y = [255,255,0]
+colors=[r,g,b,m,c,y]
 
-class RPCell :
-    def __init__(self,color,x,y):
+"""class RPCell :
+    def __init__(self,color,x,y,z):
         self.color=color
 	self.x=x
 	self.y=y
+	self.z=z
 
     def display(self):
         for i in range (2):
             for j in range (2):
-                sense.set_pixel(self.x*3+i, self.y*3+j, self.color)
-
-class RPFace :
+                sense.set_pixel(self.x*3+i, self.y*3+j, self.color)"""
+                
+"""class RPFace :
     def __init__(self,color,top=None,right=None,bot=None,left=None):
         self.top=top
         self.right=right
@@ -34,71 +37,43 @@ class RPFace :
         for i in range(3):
             for j in range(3):
                 self.cells.append(RPCell(color,i,j))
-        
-    def setSide(self,side,face):
-        if side=="top" :
-            self.top=face
-        elif side=="right" :
-            self.right=face
-        elif side=="bot" :
-            self.bot=face
-        elif side=="left" :
-            self.left=face
 
     def display(self):
         for i in range(len(self.cells)):
-            self.cells[i].display()
+            self.cells[i].display()"""
 
 
 class RPCube :
+    current_face=0
     def __init__(self):
-        self.face1=RPFace(r)
-        self.face2=RPFace(b,top=self.face1)
-        self.face3=RPFace(g,top=self.face1,left=self.face2)
-        self.face4=RPFace(y,top=self.face1,left=self.face3)
-        self.face5=RPFace(c,top=self.face1,left=self.face4,right=self.face2)
-        self.face6=RPFace(m,top=self.face2,right=self.face3,bot=self.face4,left=self.face5)
-        self.face1.setSide("top",self.face4)
-        self.face1.setSide("right",self.face3)
-        self.face1.setSide("bot",self.face2)
-        self.face1.setSide("left",self.face5)
-        self.face2.setSide("right",self.face3)
-        self.face2.setSide("bot",self.face6)
-        self.face2.setSide("left",self.face5)
-        self.face3.setSide("right",self.face4)
-        self.face3.setSide("bot",self.face6)
-        self.face4.setSide("bot",self.face6)
-        self.face4.setSide("right",self.face5)
-        self.face5.setSide("bot",self.face6)
-	self.currentFace=self.face2
+        """self.cells=[]
+        for ix in range (2):
+            for iy in range (2):
+                for iz in range (2):
+                    self.cells.append(RPCell(colors[color_cpt%6],ix,iy,iz))
+                    color_cpt+=1"""
+        self.cells=[]
+        for face in range (6):
+            self.cells.append([])
+            for line in range (3):
+                self.cells[face].append([])
+                for column in range (3):
+                    self.cells[face][line].append([])
+                    self.cells[face][line][column]=colors[face]
 
     def display(self):
-        self.currentFace.display()
-    
-    def rotate(self,side):
-	if side=="top":
-	    self.currentFace=self.currentFace.top
-	elif side=="right":
-	    self.currentFace=self.currentFace.right
-	elif side=="bot":
-	    self.currentFace=self.currentFace.bot
-	elif side =="left":
-	    self.currentFace=self.currentFace.left
-
-
-
-
+        for line in range (3):
+            for column in range (3):
+                for i in range (2):
+                    for j in range (2):
+                        sense.set_pixel(line*3+i, column*3+j, self.cells[self.current_face][line][column])
+	
 
 
 cube=RPCube()
 
 cube.display()
-sleep(5)
-cube.rotate("left")
-cube.display()
-sleep(5)
-cube.rotate("right")
-cube.display()
+
 
 
         

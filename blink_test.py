@@ -23,25 +23,28 @@ r,r,w,r,r,w,r,r
 ]
 
 def main():
-    x = 0
-    y = 0
-    sense.set_pixels(image)
-    blink(0,0)
-    blink(1,0)
-    blink(0,1)
-    blink(1,1)
-        
+	sense.set_pixels(image)
+	blink(0,0)
+
+
 def blink(x, y):
-    i = 0
-    tmp = sense.get_pixel(x, y)
-    tmp_R = tmp[0]
-    tmp_G = tmp[1]
-    tmp_B = tmp[2]
-    while i < 10:
-        sense.set_pixel(x, y, 0, 0, 0)
-        sleep(0.1)
-        sense.set_pixel(x, y, tmp_R, tmp_G, tmp_B)
-        sleep(0.1)
-        i = i + 1
+	i = 0
+	tmp = sense.get_pixel(x, y)
+	tmp_R = tmp[0]
+	tmp_G = tmp[1]
+	tmp_B = tmp[2]
+	while i < 100:
+		for i in range (8):
+			sense.set_pixel(x+i, y, 0, 0, 0)
+		for i in range (8):
+			sense.set_pixel(x, y+i, 0,0,0)
+		sleep(0.1)
+		for i in range (8):
+			sense.set_pixel(x+i, y, tmp_R, tmp_G, tmp_B)
+		for i in range (8):
+			sense.set_pixel(x, y+i, tmp_R, tmp_G, tmp_B)
+		sleep(0.1)
+		i = i + 1
 
 main()
+
