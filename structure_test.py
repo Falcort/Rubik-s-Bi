@@ -3,8 +3,10 @@ from time import sleep
 from collections import namedtuple
 
 
+
 sense = SenseHat()
 sense.clear()
+
 
 r = [255,0,0]
 g = [0,255,0]
@@ -15,43 +17,10 @@ c = [0,255,255]
 y = [255,255,0]
 colors=[r,g,b,m,c,y]
 
-"""class RPCell :
-    def __init__(self,color,x,y,z):
-        self.color=color
-	self.x=x
-	self.y=y
-	self.z=z
-
-    def display(self):
-        for i in range (2):
-            for j in range (2):
-                sense.set_pixel(self.x*3+i, self.y*3+j, self.color)"""
-                
-"""class RPFace :
-    def __init__(self,color,top=None,right=None,bot=None,left=None):
-        self.top=top
-        self.right=right
-        self.bot=bot
-        self.left=left
-        self.cells=[]
-        for i in range(3):
-            for j in range(3):
-                self.cells.append(RPCell(color,i,j))
-
-    def display(self):
-        for i in range(len(self.cells)):
-            self.cells[i].display()"""
 
 
 class RPCube :
-    current_face=0
     def __init__(self):
-        """self.cells=[]
-        for ix in range (2):
-            for iy in range (2):
-                for iz in range (2):
-                    self.cells.append(RPCell(colors[color_cpt%6],ix,iy,iz))
-                    color_cpt+=1"""
         self.cells=[]
         for face in range (6):
             self.cells.append([])
@@ -61,18 +30,35 @@ class RPCube :
                     self.cells[face][line].append([])
                     self.cells[face][line][column]=colors[face]
 
-    def display(self):
+    def display(self,face):
         for line in range (3):
             for column in range (3):
                 for i in range (2):
                     for j in range (2):
-                        sense.set_pixel(line*3+i, column*3+j, self.cells[self.current_face][line][column])
+                        sense.set_pixel(line*3+i, column*3+j, self.cells[face][line][column])
+                        
 	
-
 
 cube=RPCube()
 
-cube.display()
+while True:
+    orientation=sense.get_orientation()
+    pitch=orientation['pitch']
+    roll=orientation['roll']
+    yaw=orientation['yaw']
+
+    if( (pitch>315 or pitch<45) and (roll<45 or roll>315)):
+        cube.display(4)
+    elif( (pitch>315 or pitch<45) and (roll>45 and roll<135)):
+        cube.display(0)
+    elif( (pitch>315 or pitch<45) and (roll>135 and roll<225)):
+        cube.display(5)
+    elif( (pitch>315 or pitch<45) and (roll>225 and roll<315)):
+        cube.display(2)
+    elif( (pitch>45 and pitch<135)s):
+        cube.display(3)
+    elif( (pitch>225 and pitch<315)):
+        cube.display(1)
 
 
 
